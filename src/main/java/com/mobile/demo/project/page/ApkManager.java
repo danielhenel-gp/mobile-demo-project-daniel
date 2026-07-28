@@ -1,6 +1,6 @@
 package com.mobile.demo.project.page;
 
-import io.appium.java_client.android.AndroidDriver;
+import com.mobile.demo.project.config.AppiumDriverConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,14 +14,14 @@ public class ApkManager {
     private String appPackage;
 
     @Autowired
-    private AndroidDriver androidDriver;
+    private AppiumDriverConfig driverConfig;
 
     public boolean isApkInstalled() {
-        return androidDriver.isAppInstalled(appPackage);
+        return driverConfig.getDriver().isAppInstalled(appPackage);
     }
 
     public void removeApk() {
-        androidDriver.removeApp(appPackage);
+        driverConfig.getDriver().removeApp(appPackage);
         log.info("Apk [{}] removed.", appPackage);
     }
 }
