@@ -4,6 +4,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -61,7 +62,7 @@ public class AppiumDriverConfig {
             options.setAutoGrantPermissions(true);
             options.setNoReset(false);
 
-            URL serverUrl = URI.create(appiumServerUrl + "/wd/hub").toURL();
+            URL serverUrl = URI.create(appiumServerUrl).toURL();
             driver = new AndroidDriver(serverUrl, options);
             log.info("Appium driver initialized successfully.");
         } catch (MalformedURLException e) {
